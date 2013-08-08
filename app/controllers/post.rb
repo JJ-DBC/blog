@@ -1,11 +1,18 @@
-get '/' do
+get '/posts' do
   @posts = Post.all
   erb :index
 end
 
+post '/posts' do
+  # allow user to create post via form and sumbit form to the database
+
+  redirect '/posts'
+  # erb :show  # look into difference between erb/render and 'redirect to'
+end
+
 get '/posts/new' do
   # allows user create a new post by showing a form
-  erb :new
+  erb :post
 end
 
 get '/posts/:id' do
@@ -21,15 +28,15 @@ end
 
 post '/posts/:id/update' do
   # allows user to update post via form and submit for to database
-  erb :show  # look into difference between erb/render and 'redirect to'
+
+  redirect '/posts/:id'
+  # erb :show  # look into difference between erb/render and 'redirect to'
 end
 
-post '/posts' do
-  # allow user to create post via form and sumbit form to the database
-  erb :show  # look into difference between erb/render and 'redirect to'
-end
 
 post '/posts/:id/delete' do
   # allows user to delete post from database
-  erb :index  # look into difference between erb/render and 'redirect to'
+
+  redirect '/posts'
+  # erb :index  # look into difference between erb/render and 'redirect to'
 end
