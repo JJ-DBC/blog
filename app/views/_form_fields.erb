@@ -2,4 +2,4 @@
   <input type="text" name = "post[title]" value="<%= @post.try(:title) %>"><br />
 
 <label for="body">Body</label>
-  <textarea name= "post[body]" value="<%= @post.try(:body) %>"></textarea><br />
+  <textarea name= "post[body]" ><%= @post.try(:body) %></textarea><br />
