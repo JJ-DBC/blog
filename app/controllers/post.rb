@@ -5,8 +5,9 @@ end
 
 post '/posts' do
   # allow user to create post via form and sumbit form to the database
-
-  redirect '/posts'
+  p params
+  @post = Post.create(params[:post])
+  redirect "/posts/#{@post.id}"
   # erb :show  # look into difference between erb/render and 'redirect to'
 end
 
@@ -22,21 +23,21 @@ get '/posts/:id' do
 end
 
 get '/posts/:id/edit' do
-  # get a user a post by id in order to makes changes on the form
+  @post = Post.find(params[:id])
   erb :edit   
 end
 
-post '/posts/:id/update' do
-  # allows user to update post via form and submit for to database
+# post '/posts/:id/update' do
+#   # allows user to update post via form and submit for to database
 
-  redirect '/posts/:id'
-  # erb :show  # look into difference between erb/render and 'redirect to'
-end
+#   redirect '/posts/:id'
+#   # erb :show  # look into difference between erb/render and 'redirect to'
+# end
 
 
-post '/posts/:id/delete' do
-  # allows user to delete post from database
+# post '/posts/:id/delete' do
+#   # allows user to delete post from database
 
-  redirect '/posts'
-  # erb :index  # look into difference between erb/render and 'redirect to'
-end
+#   redirect '/posts'
+#   # erb :index  # look into difference between erb/render and 'redirect to'
+# end
