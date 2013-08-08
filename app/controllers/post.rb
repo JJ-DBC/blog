@@ -1,14 +1,7 @@
+# GET REQUESTS ===============================================================
 get '/posts' do
   @posts = Post.all
   erb :index
-end
-
-post '/posts' do
-  # allow user to create post via form and sumbit form to the database
-  @post = Post.create(params[:post])
-
-  redirect "/posts/#{@post.id}"
-  # erb :show  # look into difference between erb/render and 'redirect to'
 end
 
 get '/posts/new' do
@@ -30,11 +23,23 @@ get '/posts/:id/edit' do
   erb :edit   
 end
 
+# POST REQUESTS =============================================================
+
+post '/posts' do
+  # allow user to create post via form and sumbit form to the database
+  @post = Post.create(params[:post])
+
+  redirect "/posts/#{@post.id}"
+  # erb :show  # look into difference between erb/render and 'redirect to'
+end
+
 post '/posts/:id/update' do
   # allows user to update post via form and submit for to database
+  puts "got here"
   @post = Post.find(params[:id])
   @post.update_attributes(params[:post])
-  redirect '/posts/:id'
+
+  redirect "/posts/#{@post.id}"
   # erb :show  # look into difference between erb/render and 'redirect to'
 end
 
